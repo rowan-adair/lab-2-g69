@@ -185,14 +185,12 @@ public class DataUtilitiesTests extends TestCase {
 	
 	@Test
 	public void testCreateNumberArrayMixedValues() {
-		double[] doubleArr = new double[5];
+		double[] doubleArr = new double[10];
 		for(int i = 0; i < 5; i++) {
 			doubleArr[i] = i;
 		}
 		Number[] numArray = DataUtilities.createNumberArray(doubleArr);
-		for(int i = 0; i < doubleArr.length; i++) {
-			assertTrue((Number)doubleArr[i] == numArray[i]);
-		}	
+		assertEquals(doubleArr.toString(), numArray.toString());
 	}
 	@Test
 	public void testCreateNumberArrayAllPositiveValues() {
@@ -204,21 +202,17 @@ public class DataUtilitiesTests extends TestCase {
 			doubleArr[i] = -i;
 		}
 		Number[] numArray = DataUtilities.createNumberArray(doubleArr);
-		for(int i = 0; i < doubleArr.length; i++) {
-			assertTrue((Number)doubleArr[i] == numArray[i]);
-		}	
+		assertEquals(doubleArr.toString(), numArray.toString());
 	}
 	
 	@Test
 	public void testCreateNumberArrayAllNegativeValues() {
-		double[] doubleArr = new double[5];
-		for(int i = 0; i < doubleArr.length; i++) {
+		double[] doubleArr = new double[10];
+		for(int i = 0; i < 5; i++) {
 			doubleArr[i] = -i;
 		}
 		Number[] numArray = DataUtilities.createNumberArray(doubleArr);
-		for(int i = 0; i < doubleArr.length; i++) {
-			assertTrue((Number)doubleArr[i] == numArray[i]);
-		}	
+		assertEquals(doubleArr.toString(), numArray.toString());
 	}
 	
 	@Test

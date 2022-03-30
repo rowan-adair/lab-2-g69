@@ -3,7 +3,6 @@ package org.jfree.data.test;
 
 import org.junit.Assert.*;
 
-
 import org.jfree.data.DataUtilities;
 import org.jfree.data.DefaultKeyedValues2D;
 import org.junit.Test;
@@ -13,8 +12,6 @@ import junit.framework.TestCase;
 public class DataUtilitiesTests extends TestCase {
 
 	double EPSILON = 0.000001d;
-	
-	
 	// calculateColumnTotal
 	@Test
 	public void testCalculateColumnTotalAllPositiveValues() {
@@ -152,7 +149,6 @@ public class DataUtilitiesTests extends TestCase {
 		}
 		
 		for(int i = 0; i < 5; i++) {
-			
 			expectedTotal += -i;
 			defaultKeyedValues2D.addValue(-i, 0, i+5);
 		}
@@ -185,51 +181,15 @@ public class DataUtilitiesTests extends TestCase {
 	
 	@Test
 	public void testCreateNumberArrayMixedValues() {
-		double[] doubleArr = new double[5];
-		for(int i = 0; i < 5; i++) {
-			doubleArr[i] = i;
-		}
-		Number[] numArray = DataUtilities.createNumberArray(doubleArr);
-		for(int i = 0; i < doubleArr.length; i++) {
-			assertTrue((Number)doubleArr[i] == numArray[i]);
-		}	
+		
 	}
 	@Test
 	public void testCreateNumberArrayAllPositiveValues() {
-		double[] doubleArr = new double[10];
-		for(int i = 0; i < 5; i++) {
-			doubleArr[i] = i;
-		}
-		for(int i = 5; i < 10; i++) {
-			doubleArr[i] = -i;
-		}
-		Number[] numArray = DataUtilities.createNumberArray(doubleArr);
-		for(int i = 0; i < doubleArr.length; i++) {
-			assertTrue((Number)doubleArr[i] == numArray[i]);
-		}	
+		
 	}
-	
 	@Test
 	public void testCreateNumberArrayAllNegativeValues() {
-		double[] doubleArr = new double[5];
-		for(int i = 0; i < doubleArr.length; i++) {
-			doubleArr[i] = -i;
-		}
-		Number[] numArray = DataUtilities.createNumberArray(doubleArr);
-		for(int i = 0; i < doubleArr.length; i++) {
-			assertTrue((Number)doubleArr[i] == numArray[i]);
-		}	
-	}
-	
-	@Test
-	public void testCreateNumberArrayNullValue() {
-		try {
-			DataUtilities.createNumberArray(null);
-			fail();
-		} catch (Exception e){
-			// According to JavaDoc InvalidParameterException but this exception isn't present.
-			assertTrue(e.getClass().equals(IllegalArgumentException.class));
-		}
+		
 	}
 	
 	// createNumberArray2D

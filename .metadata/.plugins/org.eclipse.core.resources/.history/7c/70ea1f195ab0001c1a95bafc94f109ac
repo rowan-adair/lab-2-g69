@@ -185,18 +185,16 @@ public class DataUtilitiesTests extends TestCase {
 	
 	@Test
 	public void testCreateNumberArrayMixedValues() {
-		double[] doubleArr = new double[5];
+		double[] doubleArr = {};
 		for(int i = 0; i < 5; i++) {
 			doubleArr[i] = i;
 		}
 		Number[] numArray = DataUtilities.createNumberArray(doubleArr);
-		for(int i = 0; i < doubleArr.length; i++) {
-			assertTrue((Number)doubleArr[i] == numArray[i]);
-		}	
+		assertEquals(doubleArr.toString(), numArray.toString());
 	}
 	@Test
 	public void testCreateNumberArrayAllPositiveValues() {
-		double[] doubleArr = new double[10];
+		double[] doubleArr = {};
 		for(int i = 0; i < 5; i++) {
 			doubleArr[i] = i;
 		}
@@ -204,21 +202,17 @@ public class DataUtilitiesTests extends TestCase {
 			doubleArr[i] = -i;
 		}
 		Number[] numArray = DataUtilities.createNumberArray(doubleArr);
-		for(int i = 0; i < doubleArr.length; i++) {
-			assertTrue((Number)doubleArr[i] == numArray[i]);
-		}	
+		assertEquals(doubleArr.toString(), numArray.toString());
 	}
 	
 	@Test
 	public void testCreateNumberArrayAllNegativeValues() {
-		double[] doubleArr = new double[5];
-		for(int i = 0; i < doubleArr.length; i++) {
+		double[] doubleArr = {};
+		for(int i = 0; i < 5; i++) {
 			doubleArr[i] = -i;
 		}
 		Number[] numArray = DataUtilities.createNumberArray(doubleArr);
-		for(int i = 0; i < doubleArr.length; i++) {
-			assertTrue((Number)doubleArr[i] == numArray[i]);
-		}	
+		assertEquals(doubleArr.toString(), numArray.toString());
 	}
 	
 	@Test
@@ -227,7 +221,6 @@ public class DataUtilitiesTests extends TestCase {
 			DataUtilities.createNumberArray(null);
 			fail();
 		} catch (Exception e){
-			// According to JavaDoc InvalidParameterException but this exception isn't present.
 			assertTrue(e.getClass().equals(IllegalArgumentException.class));
 		}
 	}

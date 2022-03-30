@@ -3,7 +3,6 @@ package org.jfree.data.test;
 
 import org.junit.Assert.*;
 
-
 import org.jfree.data.DataUtilities;
 import org.jfree.data.DefaultKeyedValues2D;
 import org.junit.Test;
@@ -13,8 +12,6 @@ import junit.framework.TestCase;
 public class DataUtilitiesTests extends TestCase {
 
 	double EPSILON = 0.000001d;
-	
-	
 	// calculateColumnTotal
 	@Test
 	public void testCalculateColumnTotalAllPositiveValues() {
@@ -53,6 +50,18 @@ public class DataUtilitiesTests extends TestCase {
 		for(int i = 5; i < 10; i++) {
 			expectedTotal += -i;
 			defaultKeyedValues2D.addValue(-i, i, 0);
+		}
+		
+		assertEquals(DataUtilities.calculateColumnTotal(defaultKeyedValues2D, 0), expectedTotal, EPSILON);
+	}
+	
+	@Test
+	public void testCalculateColumnTotalExtremeTotal() {
+		DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
+		int expectedTotal = 0;
+		for(int i = 0; i < 1000000; i++) {
+			expectedTotal += i;
+			defaultKeyedValues2D.addValue(i, i, 0);
 		}
 		
 		assertEquals(DataUtilities.calculateColumnTotal(defaultKeyedValues2D, 0), expectedTotal, EPSILON);
@@ -142,6 +151,18 @@ public class DataUtilitiesTests extends TestCase {
 	}
 	
 	@Test
+	public void testCalculateRowTotalExtremeTotal() {
+		DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
+		int expectedTotal = 0;
+		for(int i = 0; i < 10000; i++) {
+			expectedTotal += i;
+			defaultKeyedValues2D.addValue(i, 0, i);
+		}
+		
+		assertEquals(DataUtilities.calculateRowTotal(defaultKeyedValues2D, 0), expectedTotal, EPSILON);
+	}
+	
+	@Test
 	public void testCalculateRowTotalZeroResult() {
 		DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
 		int expectedTotal = 0;
@@ -152,7 +173,6 @@ public class DataUtilitiesTests extends TestCase {
 		}
 		
 		for(int i = 0; i < 5; i++) {
-			
 			expectedTotal += -i;
 			defaultKeyedValues2D.addValue(-i, 0, i+5);
 		}
@@ -185,51 +205,15 @@ public class DataUtilitiesTests extends TestCase {
 	
 	@Test
 	public void testCreateNumberArrayMixedValues() {
-		double[] doubleArr = new double[5];
-		for(int i = 0; i < 5; i++) {
-			doubleArr[i] = i;
-		}
-		Number[] numArray = DataUtilities.createNumberArray(doubleArr);
-		for(int i = 0; i < doubleArr.length; i++) {
-			assertTrue((Number)doubleArr[i] == numArray[i]);
-		}	
+		
 	}
 	@Test
 	public void testCreateNumberArrayAllPositiveValues() {
-		double[] doubleArr = new double[10];
-		for(int i = 0; i < 5; i++) {
-			doubleArr[i] = i;
-		}
-		for(int i = 5; i < 10; i++) {
-			doubleArr[i] = -i;
-		}
-		Number[] numArray = DataUtilities.createNumberArray(doubleArr);
-		for(int i = 0; i < doubleArr.length; i++) {
-			assertTrue((Number)doubleArr[i] == numArray[i]);
-		}	
+		
 	}
-	
 	@Test
 	public void testCreateNumberArrayAllNegativeValues() {
-		double[] doubleArr = new double[5];
-		for(int i = 0; i < doubleArr.length; i++) {
-			doubleArr[i] = -i;
-		}
-		Number[] numArray = DataUtilities.createNumberArray(doubleArr);
-		for(int i = 0; i < doubleArr.length; i++) {
-			assertTrue((Number)doubleArr[i] == numArray[i]);
-		}	
-	}
-	
-	@Test
-	public void testCreateNumberArrayNullValue() {
-		try {
-			DataUtilities.createNumberArray(null);
-			fail();
-		} catch (Exception e){
-			// According to JavaDoc InvalidParameterException but this exception isn't present.
-			assertTrue(e.getClass().equals(IllegalArgumentException.class));
-		}
+		
 	}
 	
 	// createNumberArray2D
