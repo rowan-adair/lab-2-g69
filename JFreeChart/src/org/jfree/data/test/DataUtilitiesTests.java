@@ -1,0 +1,199 @@
+package org.jfree.data.test;
+
+
+import org.junit.Assert.*;
+
+import org.jfree.data.DataUtilities;
+import org.jfree.data.DefaultKeyedValues2D;
+import org.junit.Test;
+
+import junit.framework.TestCase;
+
+public class DataUtilitiesTests extends TestCase {
+
+	double EPSILON = 0.000001d;
+	// calculateColumnTotal
+	@Test
+	public void testCalculateColumnTotalAllPositiveValues() {
+		DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
+		int expectedTotal = 0;
+		for(int i = 0; i < 5; i++) {
+			expectedTotal += i;
+			defaultKeyedValues2D.addValue(i, i, 0);
+		}
+
+		assertEquals(DataUtilities.calculateColumnTotal(defaultKeyedValues2D, 0), expectedTotal, EPSILON);
+		
+	}
+	
+	@Test
+	public void testCalculateColumnTotalAllNegativeValues() {
+		DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
+		int expectedTotal = 0;
+		for(int i = 0; i < 5; i++) {
+			expectedTotal += -i;
+			defaultKeyedValues2D.addValue(-i, i, 0);
+		}
+		
+		assertEquals(DataUtilities.calculateColumnTotal(defaultKeyedValues2D, 0), expectedTotal, EPSILON);
+	}
+	
+	@Test
+	public void testCalculateColumnTotalMixedValues() {
+		DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
+		int expectedTotal = 0;
+		for(int i = 0; i < 5; i++) {
+			expectedTotal += i;
+			defaultKeyedValues2D.addValue(i, i, 0);
+		}
+		
+		for(int i = 5; i < 10; i++) {
+			expectedTotal += -i;
+			defaultKeyedValues2D.addValue(-i, i, 0);
+		}
+		
+		assertEquals(DataUtilities.calculateColumnTotal(defaultKeyedValues2D, 0), expectedTotal, EPSILON);
+	}
+	
+	@Test
+	public void testCalculateColumnTotalZeroResult() {
+		DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
+		int expectedTotal = 0;
+		
+		for(int i = 0; i < 5; i++) {
+			expectedTotal += i;
+			defaultKeyedValues2D.addValue(i, i, 0);
+		}
+		
+		for(int i = 0; i < 5; i++) {
+			expectedTotal += -i;
+			defaultKeyedValues2D.addValue(-i, i+5, 0);
+		}
+		
+		assertEquals(DataUtilities.calculateColumnTotal(defaultKeyedValues2D, 0), expectedTotal, EPSILON);
+	}
+	
+	@Test
+	public void testCalculateColumnTotalIndexOutOfBounds() {
+		DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
+		defaultKeyedValues2D.addValue(1, 0, 0);
+		try {
+			DataUtilities.calculateColumnTotal(defaultKeyedValues2D, -1);
+		} catch(Exception e) {
+			assertTrue(e.getClass().equals(IndexOutOfBoundsException.class));
+		}
+	}
+	
+	@Test
+	public void testCalcualteColumnTotalNullColumnValue() {
+		try {
+			DataUtilities.calculateColumnTotal(null, 0);
+			fail();
+		} 
+		catch(Exception e) {
+			assertTrue(e.getClass().equals(IllegalArgumentException.class));
+		}
+	}
+	
+	// CalculateRowTotal
+	@Test
+	public void testCalculateRowTotalAllPositiveValues() {
+		DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
+		int expectedTotal = 0;
+		for(int i = 0; i < 5; i++) {
+			expectedTotal += i;
+			defaultKeyedValues2D.addValue(i, 0, i);
+		}
+
+		assertEquals(DataUtilities.calculateRowTotal(defaultKeyedValues2D, 0), expectedTotal, EPSILON);
+		
+	}
+	
+	@Test
+	public void testCalculateRowTotalAllNegativeValues() {
+		DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
+		int expectedTotal = 0;
+		for(int i = 0; i < 5; i++) {
+			expectedTotal += -i;
+			defaultKeyedValues2D.addValue(-i, 0, i);
+		}
+		
+		assertEquals(DataUtilities.calculateRowTotal(defaultKeyedValues2D, 0), expectedTotal, EPSILON);
+	}
+	
+	@Test
+	public void testCalculateRowTotalMixedValues() {
+		DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
+		int expectedTotal = 0;
+		for(int i = 0; i < 5; i++) {
+			expectedTotal += i;
+			defaultKeyedValues2D.addValue(i, 0, i);
+		}
+		
+		for(int i = 5; i < 10; i++) {
+			expectedTotal += -i;
+			defaultKeyedValues2D.addValue(-i, 0, i);
+		}
+		
+		assertEquals(DataUtilities.calculateRowTotal(defaultKeyedValues2D, 0), expectedTotal, EPSILON);
+	}
+	
+	@Test
+	public void testCalculateRowTotalZeroResult() {
+		DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
+		int expectedTotal = 0;
+		
+		for(int i = 0; i < 5; i++) {
+			expectedTotal += i;
+			defaultKeyedValues2D.addValue(i, 0, i);
+		}
+		
+		for(int i = 0; i < 5; i++) {
+			expectedTotal += -i;
+			defaultKeyedValues2D.addValue(-i, 0, i+5);
+		}
+		
+		assertEquals(DataUtilities.calculateRowTotal(defaultKeyedValues2D, 0), expectedTotal, EPSILON);
+	}
+	
+	@Test
+	public void testCalculateRowTotalIndexOutOfBounds() {
+		DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
+		defaultKeyedValues2D.addValue(1, 0, 0);
+		try {
+			DataUtilities.calculateRowTotal(defaultKeyedValues2D, -1);
+		} catch(Exception e) {
+			assertTrue(e.getClass().equals(IndexOutOfBoundsException.class));
+		}
+	}
+	
+	@Test
+	public void testCalculateRowTotalNullColumnValue() {
+		try {
+			DataUtilities.calculateRowTotal(null, 0);
+			fail();
+		} 
+		catch(Exception e) {
+			assertTrue(e.getClass().equals(IllegalArgumentException.class));
+		}
+	}
+	// createNumberArray
+	
+	@Test
+	public void testCreateNumberArrayMixedValues() {
+		
+	}
+	@Test
+	public void testCreateNumberArrayAllPositiveValues() {
+		
+	}
+	@Test
+	public void testCreateNumberArrayAllNegativeValues() {
+		
+	}
+	
+	// createNumberArray2D
+	
+	// getCumulativePercentages
+}
+

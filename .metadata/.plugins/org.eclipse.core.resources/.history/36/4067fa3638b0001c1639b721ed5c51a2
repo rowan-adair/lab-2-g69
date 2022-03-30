@@ -1,0 +1,55 @@
+package org.jfree.data;
+
+
+import static org.junit.Assert.*;
+
+import org.jfree.data.general.junit.DatasetUtilitiesTests;
+
+import org.junit.Test;
+import org.junit.Assert;
+
+import junit.framework.TestCase;
+
+public class DataUtilitiesTests extends TestCase {
+
+	private DataUtilities dataUtilities;
+	
+	// calculateColumnTotal
+	@Test
+	public void testCalculateColumnTotalAllPositiveValues() {
+		DefaultKeyedValues2D allPositiveValues = new DefaultKeyedValues2D();
+		for(int i = 0; i < 5; i++) {
+			allPositiveValues.addValue(i, i, 0);
+		}
+		
+		assert
+	}
+	
+	@Test
+	public void testCalculateColumnTotalAllNegativeValues() {
+		
+	}
+	
+	@Test
+	public void testCalculateColumnTotalMixedValues() {
+		
+	}
+	
+	@Test
+	public void testCalculateColumnTotalZeroResult() {
+		
+	}
+	
+	@Test
+	public void testCalculateColumnTotalNullColumn() {
+		
+	}
+	// calculateRowTotal
+	
+	// createNumberArray
+	
+	// createNumberArray2D
+	
+	// getCumulativePercentages
+
+}

@@ -1,0 +1,82 @@
+package org.jfree.data.test;
+
+
+import org.junit.Assert.*;
+
+import org.jfree.data.DataUtilities;
+import org.jfree.data.DefaultKeyedValues2D;
+import org.junit.Test;
+
+import junit.framework.TestCase;
+
+public class DataUtilitiesTests extends TestCase {
+
+	// calculateColumnTotal
+	@Test
+	public void testCalculateColumnTotalAllPositiveValues() {
+		DefaultKeyedValues2D allPositiveValues = new DefaultKeyedValues2D();
+		int expectedTotal = 0;
+		for(int i = 0; i < 5; i++) {
+			expectedTotal += i;
+			allPositiveValues.addValue(i, i, 0);
+		}
+		System.out.println(allPositiveValues.toString());
+		assertEquals(DataUtilities.calculateColumnTotal(allPositiveValues, 0), expectedTotal);
+		
+	}
+	
+	@Test
+	public void testCalculateColumnTotalAllNegativeValues() {
+		DefaultKeyedValues2D allNegativeValues = new DefaultKeyedValues2D();
+		int expectedTotal = 0;
+		for(int i = 0; i < 5; i++) {
+			expectedTotal += -i;
+			allNegativeValues.addValue(-i, i, 0);
+		}
+		
+		assertEquals(DataUtilities.calculateColumnTotal(allNegativeValues, 0), expectedTotal);
+	}
+	
+	@Test
+	public void testCalculateColumnTotalMixedValues() {
+		DefaultKeyedValues2D mixedValues = new DefaultKeyedValues2D();
+		int expectedTotal = 0;
+		for(int i = 0; i < 5; i++) {
+			expectedTotal += i;
+			mixedValues.addValue(i, i, 0);
+		}
+		
+		for(int i = 5; i < 10; i++) {
+			expectedTotal += -i;
+			mixedValues.addValue(-i, i, 0);
+		}
+		
+		assertEquals(DataUtilities.calculateColumnTotal(mixedValues, 0), expectedTotal);
+	}
+	
+	@Test
+	public void testCalculateColumnTotalZeroResult() {
+		DefaultKeyedValues2D zeroTotal = new DefaultKeyedValues2D();
+		int expectedTotal = 0;
+		for(int i = 0; i < 5; i++) {
+			expectedTotal += i;
+			zeroTotal.addValue(i, i, 0);
+		}
+		
+		for(int i = 0; i < 5; i++) {
+			expectedTotal += -i;
+			zeroTotal.addValue(-i, i, 0);
+		}
+		
+		assertEquals(DataUtilities.calculateColumnTotal(zeroTotal, 0), expectedTotal);
+	}
+
+	// calculateRowTotal
+	
+	// createNumberArray
+	
+	// createNumberArray2D
+	
+	// getCumulativePercentages
+
+}
