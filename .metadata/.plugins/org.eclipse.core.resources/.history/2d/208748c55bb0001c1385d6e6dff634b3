@@ -184,7 +184,7 @@ public class DataUtilitiesTests extends TestCase {
 	// createNumberArray
 	
 	@Test
-	public void testCreateNumberArrayAllPositiveValues() {
+	public void testCreateNumberArrayMixedValues() {
 		double[] doubleArr = new double[5];
 		for(int i = 0; i < 5; i++) {
 			doubleArr[i] = i;
@@ -195,8 +195,7 @@ public class DataUtilitiesTests extends TestCase {
 		}	
 	}
 	@Test
-	
-	public void testCreateNumberArrayMixedValues() {
+	public void testCreateNumberArrayAllPositiveValues() {
 		double[] doubleArr = new double[10];
 		for(int i = 0; i < 5; i++) {
 			doubleArr[i] = i;
@@ -234,77 +233,7 @@ public class DataUtilitiesTests extends TestCase {
 	}
 	
 	// createNumberArray2D
-	@Test
-	public void testCreateNumber2DArrayMixedValues() {
-		double[][] double2DArr = new double[10][10];
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; i++) {
-				double2DArr[i][j] = i;
-			}
-		}
-		
-		for(int i = 5; i < 10; i++) {
-			for(int j = 5; i < 10; i++) {
-				double2DArr[i][j] = -i;
-
-			}
-		}
-		
-		Number[][] numArray2D = DataUtilities.createNumberArray2D(double2DArr);
-		
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; i++) {
-				assertTrue((Number)double2DArr[i][j] == numArray2D[i][j]);
-			}
-		}
-		
-	}
-	@Test
-	public void testCreateNumberArray2DAllPositiveValues() {
-		double[][] double2DArr = new double[5][5];
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; i++) {
-				double2DArr[i][j] = i;
-			}
-		}
-		
-		Number[][] numArray2D = DataUtilities.createNumberArray2D(double2DArr);
-		
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; i++) {
-				assertTrue((Number)double2DArr[i][j] == numArray2D[i][j]);
-			}
-		}
-	}
 	
-	@Test
-	public void testCreateNumberArra2DyAllNegativeValues() {
-		double[][] double2DArr = new double[5][5];
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; i++) {
-				double2DArr[i][j] = -i;
-			}
-		}
-		
-		Number[][] numArray2D = DataUtilities.createNumberArray2D(double2DArr);
-		
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; i++) {
-				assertTrue((Number)double2DArr[i][j] == numArray2D[i][j]);
-			}
-		}
-	}
-	
-	@Test
-	public void testCreateNumberArray2DNullValue() {
-		try {
-			DataUtilities.createNumberArray2D(null);
-			fail();
-		} catch (Exception e){
-			// According to JavaDoc InvalidParameterException but this exception isn't present.
-			assertTrue(e.getClass().equals(IllegalArgumentException.class));
-		}
-	}
 	// getCumulativePercentages
 }
 

@@ -261,7 +261,7 @@ public class DataUtilitiesTests extends TestCase {
 	}
 	@Test
 	public void testCreateNumberArray2DAllPositiveValues() {
-		double[][] double2DArr = new double[5][5];
+		double[][] double2DArr = new double[4][4];
 		for(int i = 0; i < 5; i++) {
 			for(int j = 0; j < 5; i++) {
 				double2DArr[i][j] = i;
