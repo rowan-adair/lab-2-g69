@@ -4,7 +4,6 @@ package org.jfree.data.test;
 import org.jfree.data.*;
 import org.junit.Test;
 
-
 import java.security.InvalidParameterException;
 
 import static org.junit.Assert.*;
@@ -30,6 +29,7 @@ public class DataUtilitiesTests {
     }
 
     // Test Create Number Array
+    // TC 1: Test Create Number Array
     @Test
     public void testCreateNumberArray() {
         double[] data = new double[] { 1.0, 2.0, 3.0 };
@@ -37,13 +37,24 @@ public class DataUtilitiesTests {
         compareDoubleAndNumberArray(data, numArray);
     }
 
+    // TC 2: Test Create Number Array All Negative Values
     @Test
-    public void createNumberArrayAllNegativeValues() {
+    public void testCreateNumberArrayAllNegativeValues() {
         double[] data = new double[] { -1.0, -2.0, -3.0 };
         Number[] numArray = DataUtilities.createNumberArray(data);
         compareDoubleAndNumberArray(data, numArray);
     }
 
+    // TC 3
+    @Test
+    public void testCreateNumberArrayPositiveAndNegativeValues() {
+        double[] data = new double[] { -1.0, 2.0, 3.0 };
+        Number[] numArray = DataUtilities.createNumberArray(data);
+        compareDoubleAndNumberArray(data, numArray);
+    }
+
+
+    // TC 4
     @Test
     public void testCreateNumberArrayExtremeUpperBound() {
         double[] data = new double[] { Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE };
@@ -51,12 +62,23 @@ public class DataUtilitiesTests {
         compareDoubleAndNumberArray(data, numArray);
     }
 
-    public void createNumberArrayExtremeLowerBound() {
+    // TC 5
+    @Test
+    public void testCreateNumberArrayExtremeLowerBound() {
         double[] data = new double[] { Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE };
         Number[] numArray = DataUtilities.createNumberArray(data);
         compareDoubleAndNumberArray(data, numArray);
     }
 
+    // TC 6
+    @Test
+    public void testCreateNumberArrayExtremeUpperBoundAndExtremeLowerBound() {
+        double[] data = new double[] { Double.MAX_VALUE, 0.0, Double.MIN_VALUE } ;
+        Number[] numArray = DataUtilities.createNumberArray(data);
+        compareDoubleAndNumberArray(data, numArray);
+    }
+
+    // TC 7
     @Test
     public void testCreateNumberArrayOneValue() {
         double[] data = new double[] { 1.0 };
@@ -64,6 +86,7 @@ public class DataUtilitiesTests {
         compareDoubleAndNumberArray(data, numArray);
     }
 
+    // TC 8
     @Test
     public void testCreateNumberArrayEmpty() {
         double[] data = new double[] {};
@@ -71,7 +94,7 @@ public class DataUtilitiesTests {
         compareDoubleAndNumberArray(data, numArray);
     }
 
-
+    // TC 9
     @Test
     public void testCreateNumberArrayThrowsIllegalArgumentException() {
         try {
@@ -83,6 +106,7 @@ public class DataUtilitiesTests {
     }
 
     // Test Create Number Array 2D
+    // TC 1
     @Test
     public void testCreateNumberArray2D() {
         double[][] data = new double[][] { { 1.0, 2.0, 3.0 }, { 4.0, 5.0, 6.0 } };
@@ -90,6 +114,7 @@ public class DataUtilitiesTests {
         compareDoubleAndNumberArray2D(numArray, data);
     }
 
+    // TC 2
     @Test
     public void testCreateNumberArray2DAllNegativeValues() {
         double[][] data = new double[][] { { -1.0, -2.0, -3.0 }, { -4.0, -5.0, -6.0 } };
@@ -97,6 +122,15 @@ public class DataUtilitiesTests {
         compareDoubleAndNumberArray2D(numArray, data);
     }
 
+    // TC 3
+    @Test
+    public void testCreateNumberArray2DPositiveAndNegativeValues(){
+        double[][] data = new double[][] { { -1.0, 2.0, -3.0 }, { 4.0, -5.0, 6.0 } };
+        Number[][] numArray = DataUtilities.createNumberArray2D(data);
+        compareDoubleAndNumberArray2D(numArray, data);
+    }
+
+    // TC 4
     @Test
     public void testCreateNumberArray2DExtremeUpperBound() {
         double[][] data = new double[][] { { Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE }, { Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE } };
@@ -107,6 +141,13 @@ public class DataUtilitiesTests {
     @Test
     public void testCreateNumberArray2DExtremeLowerBound() {
         double[][] data = new double[][] { { Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE }, { Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE } };
+        Number[][] numArray = DataUtilities.createNumberArray2D(data);
+        compareDoubleAndNumberArray2D(numArray, data);
+    }
+
+    @Test
+    public void testCreateNumberArray2DExtremeLowerBoundAndExtremeUpperBound(){
+        double[][] data = new double[][] { { Double.MIN_VALUE, 0.0, Double.MAX_VALUE }, { Double.MIN_VALUE, 0.0, Double.MAX_VALUE } };
         Number[][] numArray = DataUtilities.createNumberArray2D(data);
         compareDoubleAndNumberArray2D(numArray, data);
     }
@@ -136,6 +177,7 @@ public class DataUtilitiesTests {
     }
 
     // Calculate Column Total
+    // TC 1
     @Test
     public void testCalculateColumnTotal() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
@@ -148,6 +190,7 @@ public class DataUtilitiesTests {
         assertEquals(expectedTotal, total, EPSILON);
     }
 
+    // TC 2
     @Test
     public void testCalculateColumnTotalAllNegative(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
@@ -160,6 +203,7 @@ public class DataUtilitiesTests {
         assertEquals(expectedTotal, total, EPSILON);
     }
 
+    // TC 3
     @Test
     public void testCalculateColumnTotalOneValue(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
@@ -169,6 +213,7 @@ public class DataUtilitiesTests {
         assertEquals(expectedTotal, total, EPSILON);
     }
 
+    // TC 4
     @Test
     public void testCalculateColumnTotalPositiveAndNegativeValues() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
@@ -185,6 +230,7 @@ public class DataUtilitiesTests {
         assertEquals(expectedTotal, total, EPSILON);
     }
 
+    // TC 5
     @Test
     public void testCalculateColumnTotalEqualZero(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
@@ -199,6 +245,7 @@ public class DataUtilitiesTests {
         assertEquals(expectedTotal, total, EPSILON);
     }
 
+    // TC 6
     @Test
     public void testCalculateColumnTotalExtremeLowerBound() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
@@ -210,6 +257,7 @@ public class DataUtilitiesTests {
         assertEquals(expectedTotal, total, EPSILON);
     }
 
+    // TC 7
     @Test
     public void testCalculateColumnTotalFractionalValues() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
@@ -222,6 +270,7 @@ public class DataUtilitiesTests {
         assertEquals(expectedTotal, total, EPSILON);
     }
 
+    // TC 8
     @Test
     public void testCalculateColumnTotalFractionalNegativeValues(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
@@ -234,6 +283,7 @@ public class DataUtilitiesTests {
         assertEquals(expectedTotal, total, EPSILON);
     }
 
+    // TC 9
     @Test
     public void testCalculateColumnTotalIndexOutOfBounds() {
         DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
@@ -247,6 +297,7 @@ public class DataUtilitiesTests {
     }
 
     // Calculate Row Total
+    // TC 1
     @Test
     public void testCalculateRowTotal() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
@@ -259,6 +310,7 @@ public class DataUtilitiesTests {
         assertEquals(expectedTotal, total, EPSILON);
     }
 
+    // TC 2
     @Test
     public void testCalculateRowTotalAllNegative(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
@@ -271,6 +323,7 @@ public class DataUtilitiesTests {
         assertEquals(expectedTotal, total, EPSILON);
     }
 
+    // TC 3
     @Test
     public void testCalculateRowTotalOneValue(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
@@ -280,6 +333,7 @@ public class DataUtilitiesTests {
         assertEquals(expectedTotal, total, EPSILON);
     }
 
+    // TC 4
     @Test
     public void testCalculateRowTotalPositiveAndNegativeValues() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
@@ -296,6 +350,7 @@ public class DataUtilitiesTests {
         assertEquals(expectedTotal, total, EPSILON);
     }
 
+    // TC 5
     @Test
     public void testCalculateRowTotalEqualZero(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
@@ -310,13 +365,12 @@ public class DataUtilitiesTests {
         assertEquals(expectedTotal, total, EPSILON);
     }
 
+
     @Test
     public void testCalculateRowTotalExtremeLowerBound() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
-        double expectedTotal = Double.MIN_VALUE * 5;
-        for (int i = 0; i < 5; i++) {
-            data.addValue(Double.MIN_VALUE, 0, i);
-        }
+        double expectedTotal = Double.MIN_VALUE;
+        data.addValue(Double.MIN_VALUE, 0, 0);
         double total = DataUtilities.calculateRowTotal(data, 0);
         assertEquals(expectedTotal, total, EPSILON);
     }
@@ -324,10 +378,8 @@ public class DataUtilitiesTests {
     @Test
     public void testCalculateRowTotalExtremeUpperBound() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
-        double expectedTotal = Double.MAX_VALUE * 5;
-        for (int i = 0; i < 5; i++) {
-            data.addValue(Double.MAX_VALUE, 0, i);
-        }
+        double expectedTotal = Double.MAX_VALUE;
+        data.addValue(Double.MAX_VALUE, 0, 0);
         double total = DataUtilities.calculateRowTotal(data, 0);
         assertEquals(expectedTotal, total, EPSILON);
     }
@@ -483,7 +535,7 @@ public class DataUtilitiesTests {
     }
 
     @Test
-    public void testGetCumulativePercentagesWithNullKeyThrowsIllegalArgumentException() {
+    public void testGetCumulativePercentagesWithNullKeyThrowsInvalidParameterException() {
         try {
             DefaultKeyedValues data = new DefaultKeyedValues();
             data.addValue(null, 9);
