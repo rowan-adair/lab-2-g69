@@ -138,6 +138,7 @@ public class DataUtilitiesTests {
         compareDoubleAndNumberArray2D(numArray, data);
     }
 
+    // TC 5
     @Test
     public void testCreateNumberArray2DExtremeLowerBound() {
         double[][] data = new double[][] { { Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE }, { Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE } };
@@ -145,6 +146,7 @@ public class DataUtilitiesTests {
         compareDoubleAndNumberArray2D(numArray, data);
     }
 
+    // TC 6
     @Test
     public void testCreateNumberArray2DExtremeLowerBoundAndExtremeUpperBound(){
         double[][] data = new double[][] { { Double.MIN_VALUE, 0.0, Double.MAX_VALUE }, { Double.MIN_VALUE, 0.0, Double.MAX_VALUE } };
@@ -152,6 +154,7 @@ public class DataUtilitiesTests {
         compareDoubleAndNumberArray2D(numArray, data);
     }
 
+    // TC 7
     @Test
     public void testCreateNumberArray2DOneValue() {
         double[][] data = new double[][] { { 1.0 } };
@@ -159,6 +162,7 @@ public class DataUtilitiesTests {
         compareDoubleAndNumberArray2D(numArray, data);
     }
 
+    // TC 8
     @Test
     public void testCreateNumberArray2DEmpty() {
         double[][] data = new double[][] { {}, {} };
@@ -166,13 +170,14 @@ public class DataUtilitiesTests {
         compareDoubleAndNumberArray2D(numArray, data);
     }
 
+    // TC 9
     @Test
     public void testCreateNumberArray2DThrowsIllegalArgumentException() {
         try {
             DataUtilities.createNumberArray2D(null);
             fail("Expected IllegalArgumentException.");
-        } catch (IllegalArgumentException e) {
-            // expected
+        } catch (Exception  e) {
+            assertEquals(InvalidParameterException.class, e.getClass());
         }
     }
 
@@ -292,7 +297,7 @@ public class DataUtilitiesTests {
             DataUtilities.calculateColumnTotal(defaultKeyedValues2D, -1);
             fail("Exception index out of bounds expected");
         } catch(Exception e) {
-            assertEquals(e.getClass(), IndexOutOfBoundsException.class);
+            assertEquals(InvalidParameterException.class, e.getClass());
         }
     }
 
@@ -432,7 +437,7 @@ public class DataUtilitiesTests {
             DataUtilities.calculateRowTotal(defaultKeyedValues2D, 1);
             fail("Exception NullPointerException expected");
         } catch(Exception e) {
-            assertEquals(e.getClass(), IndexOutOfBoundsException.class);
+            assertEquals(InvalidParameterException.class, e.getClass());
         }
     }
 
@@ -442,7 +447,7 @@ public class DataUtilitiesTests {
             DataUtilities.calculateRowTotal(null, 0);
             fail("Exception NullPointerException expected");
         } catch(Exception e) {
-            assertEquals(e.getClass(), NullPointerException.class);
+            assertEquals(InvalidParameterException.class, e.getClass());
         }
     }
 
@@ -517,13 +522,13 @@ public class DataUtilitiesTests {
     @Test
     public void testGetCumulativePercentagesPositiveAndNegativeValues() {
         DefaultKeyedValues data = new DefaultKeyedValues();
-        data.addValue((Comparable) 0, -5);
-        data.addValue((Comparable) 1, 9);
-        data.addValue((Comparable) 2, -2);
+        data.addValue("0", -5);
+        data.addValue("1", 9);
+        data.addValue("2", -2);
         KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
-        assertEquals(0.0, percentages.getValue(0));
-        assertEquals(0.5, percentages.getValue(1));
-        assertEquals(0.0, percentages.getValue(2));
+        assertEquals(0.0, percentages.getValue("0"));
+        assertEquals(0.5, percentages.getValue("1"));
+        assertEquals(0.0, percentages.getValue("2"));
     }
 
     @Test
