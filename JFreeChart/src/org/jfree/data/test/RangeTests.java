@@ -329,6 +329,6 @@ public class RangeTests extends TestCase {
     }
 
 
-
+    // Tests for intersects()
 
 }
