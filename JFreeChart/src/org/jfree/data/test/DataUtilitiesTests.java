@@ -529,21 +529,28 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 2
     @Test
-    public void testGetCumulativePercentagesNullData() {
-        try {
-            DataUtilities.getCumulativePercentages(null);
-            fail("Exception InvalidParameterException expected");
-        } catch(Exception e) {
-            assertEquals(InvalidParameterException.class, e.getClass());
-        }
+    public void testGetCumulativePercentagesNegativeValues() {
+        DefaultKeyedValues data = new DefaultKeyedValues();
+        data.addValue("0", -5);
+        data.addValue("1", -9);
+        data.addValue("0", -2);
+        KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
+        assertEquals(0.3125, percentages.getValue(0));
+        assertEquals(0.875, percentages.getValue(1));
+        assertEquals(1.0, percentages.getValue(2));
     }
 
     // TC 3
     @Test
-    public void testGetCumulativePercentagesEmptyData() {
+    public void testGetCumulativePercentagesPositiveAndNegativeValues() {
         DefaultKeyedValues data = new DefaultKeyedValues();
+        data.addValue("0", -5);
+        data.addValue("1", 9);
+        data.addValue("2", -2);
         KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
-        assertEquals(0, percentages.getItemCount());
+        assertEquals(0.3125, percentages.getValue(0));
+        assertEquals(0.875, percentages.getValue(1));
+        assertEquals(1.0, percentages.getValue(2));
     }
 
     // TC 4
@@ -557,15 +564,6 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 5
     @Test
-    public void testGetCumulativePercentagesZeroValue() {
-        DefaultKeyedValues data = new DefaultKeyedValues();
-        data.addValue("0", 0);
-        KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
-        assertEquals(0.0, percentages.getValue(0));
-    }
-
-    // TC 6
-    @Test
     public void testGetCumulativePercentagesNegativeValue() {
         DefaultKeyedValues data = new DefaultKeyedValues();
         data.addValue("0", -5);
@@ -573,60 +571,40 @@ public class DataUtilitiesTests extends TestCase {
         assertEquals(0.0, percentages.getValue(0));
     }
 
+    // TC 6
+    @Test
+    public void testGetCumulativePercentagesZeroValue() {
+        DefaultKeyedValues data = new DefaultKeyedValues();
+        data.addValue("0", 0);
+        KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
+        assertEquals(0.0, percentages.getValue(0));
+    }
+
     // TC 7
     @Test
-    public void testGetCumulativePercentagesNegativeValues() {
-        DefaultKeyedValues data = new DefaultKeyedValues();
-        data.addValue("0", -5);
-        data.addValue("1", -9);
-        data.addValue("0", -2);
-        KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
-        assertEquals(0.3125, percentages.getValue(0));
-        assertEquals(0.875, percentages.getValue(1));
-        assertEquals(1.0, percentages.getValue(2));
+    public void testGetCumulativePercentagesNullData() {
+        try {
+            DataUtilities.getCumulativePercentages(null);
+            fail("Exception InvalidParameterException expected");
+        } catch(Exception e) {
+            assertEquals(InvalidParameterException.class, e.getClass());
+        }
     }
 
     // TC 8
     @Test
-    public void testGetCumulativePercentagesPositiveAndNegativeValues() {
+    public void testGetCumulativePercentagesEmptyData() {
         DefaultKeyedValues data = new DefaultKeyedValues();
-        data.addValue("0", -5);
-        data.addValue("1", 9);
-        data.addValue("2", -2);
         KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
-        assertEquals(0.3125, percentages.getValue(0));
-        assertEquals(0.875, percentages.getValue(1));
-        assertEquals(1.0, percentages.getValue(2));
+        assertEquals(0, percentages.getItemCount());
     }
 
     // TC 9
     @Test
     public void testGetCumulativePercentagesWithNullValues() {
         DefaultKeyedValues data = new DefaultKeyedValues();
-        data.addValue(0, null);
+        data.addValue("0", null);
         KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
         assertEquals(Double.NaN, percentages.getValue(0));
-    }
-
-    // TC 10
-    @Test
-    public void testGetCumulativePercentagesWithNullKeyThrowsInvalidParameterException() {
-        try {
-            DefaultKeyedValues data = new DefaultKeyedValues();
-            data.addValue(null, 9);
-        } catch(Exception e) {
-            assertEquals(InvalidParameterException.class, e.getClass());
-        }
-    }
-
-    // TC 11
-    @Test
-    public void testGetCumulativePercentagesWithNullKeyAndValueInvalidParameterException() {
-        try {
-            DefaultKeyedValues data = new DefaultKeyedValues();
-            data.addValue(null, null);
-        } catch(Exception e) {
-            assertEquals(InvalidParameterException.class, e.getClass());
-        }
     }
 }
