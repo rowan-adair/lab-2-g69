@@ -1,16 +1,22 @@
 package org.jfree.data.test;
 
 
+import junit.framework.TestCase;
 import org.jfree.data.*;
+import org.junit.After;
 import org.junit.Test;
 
 import java.security.InvalidParameterException;
 
-import static org.junit.Assert.*;
 
-public class DataUtilitiesTests {
+public class DataUtilitiesTests extends TestCase {
 
     public static final double  EPSILON = 0.0000001d;
+
+    @After
+    protected void tearDown() throws Exception {
+        super.tearDown();
+    }
 
     private void compareDoubleAndNumberArray2D(Number[][] numArray, double[][] data) {
         assertEquals(data.length, numArray.length);
@@ -29,6 +35,7 @@ public class DataUtilitiesTests {
         }
     }
 
+    //******************************************************************************************************************
     // Test Create Number Array
     // TC 1: Test Create Number Array
     @Test
@@ -106,6 +113,7 @@ public class DataUtilitiesTests {
         }
     }
 
+    //******************************************************************************************************************
     // Test Create Number Array 2D
     // TC 1
     @Test
@@ -182,6 +190,7 @@ public class DataUtilitiesTests {
         }
     }
 
+    //******************************************************************************************************************
     // Calculate Column Total
     // TC 1
     @Test
@@ -343,6 +352,7 @@ public class DataUtilitiesTests {
         }
     }
 
+    //******************************************************************************************************************
     // Calculate Row Total
     // TC 1
     @Test
@@ -499,8 +509,8 @@ public class DataUtilitiesTests {
         }
     }
 
+    //******************************************************************************************************************
     // Tests for getCumulativePercentages
-
     // TC 1
     @Test
     public void testGetCumulativePercentages() {
@@ -540,7 +550,7 @@ public class DataUtilitiesTests {
     @Test
     public void testGetCumulativePercentagesOneValue() {
         DefaultKeyedValues data = new DefaultKeyedValues();
-        data.addValue((Comparable) 0, 5);
+        data.addValue("0", 5);
         KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
         assertEquals(1.0, percentages.getValue(0));
     }
@@ -569,11 +579,11 @@ public class DataUtilitiesTests {
         DefaultKeyedValues data = new DefaultKeyedValues();
         data.addValue("0", -5);
         data.addValue("1", -9);
-        data.addValue((Comparable) 2, -2);
+        data.addValue("0", -2);
         KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
-        assertEquals(0.0, percentages.getValue(0));
-        assertEquals(0.0, percentages.getValue(1));
-        assertEquals(0.0, percentages.getValue(2));
+        assertEquals(0.3125, percentages.getValue(0));
+        assertEquals(0.875, percentages.getValue(1));
+        assertEquals(1.0, percentages.getValue(2));
     }
 
     // TC 8
@@ -584,9 +594,9 @@ public class DataUtilitiesTests {
         data.addValue("1", 9);
         data.addValue("2", -2);
         KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
-        assertEquals(0.0, percentages.getValue("0"));
-        assertEquals(0.5, percentages.getValue("1"));
-        assertEquals(0.0, percentages.getValue("2"));
+        assertEquals(0.3125, percentages.getValue(0));
+        assertEquals(0.875, percentages.getValue(1));
+        assertEquals(1.0, percentages.getValue(2));
     }
 
     // TC 9
