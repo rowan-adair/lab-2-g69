@@ -39,7 +39,7 @@ public class DataUtilitiesTests extends TestCase {
     // Test Create Number Array
     // TC 1: Test Create Number Array
     @Test
-    public void testCreateNumberArray() {
+    public void testCreateNumberArraySucceedsWithValidDoubleArrayAllPositive() {
         double[] data = new double[] { 1.0, 2.0, 3.0 };
         Number[] numArray = DataUtilities.createNumberArray(data);
         compareDoubleAndNumberArray(data, numArray);
@@ -47,7 +47,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 2: Test Create Number Array All Negative Values
     @Test
-    public void testCreateNumberArrayAllNegativeValues() {
+    public void testCreateNumberArraySucceedsWithValidDoubleArrayAllNegative() {
         double[] data = new double[] { -1.0, -2.0, -3.0 };
         Number[] numArray = DataUtilities.createNumberArray(data);
         compareDoubleAndNumberArray(data, numArray);
@@ -55,7 +55,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 3
     @Test
-    public void testCreateNumberArrayPositiveAndNegativeValues() {
+    public void testCreateNumberArraySucceedsWithValidDoubleArrayWithNegativeAndPositiveValues() {
         double[] data = new double[] { -1.0, 2.0, 3.0 };
         Number[] numArray = DataUtilities.createNumberArray(data);
         compareDoubleAndNumberArray(data, numArray);
@@ -64,7 +64,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 4
     @Test
-    public void testCreateNumberArrayExtremeUpperBound() {
+    public void testCreateNumberArraySucceedsWithValidDoubleArrayExtremeMaxDoubleValues() {
         double[] data = new double[] { Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE };
         Number[] numArray = DataUtilities.createNumberArray(data);
         compareDoubleAndNumberArray(data, numArray);
@@ -72,7 +72,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 5
     @Test
-    public void testCreateNumberArrayExtremeLowerBound() {
+    public void testCreateNumberArraySucceedsWithValidDoubleArrayExtremeMinDoubleValues() {
         double[] data = new double[] { Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE };
         Number[] numArray = DataUtilities.createNumberArray(data);
         compareDoubleAndNumberArray(data, numArray);
@@ -80,7 +80,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 6
     @Test
-    public void testCreateNumberArrayExtremeUpperBoundAndExtremeLowerBound() {
+    public void testCreateNumberArraySucceedsWithValidDoubleArrayExtremeMinAndExtremeMaxDoubleValues() {
         double[] data = new double[] { Double.MAX_VALUE, 0.0, Double.MIN_VALUE } ;
         Number[] numArray = DataUtilities.createNumberArray(data);
         compareDoubleAndNumberArray(data, numArray);
@@ -88,7 +88,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 7
     @Test
-    public void testCreateNumberArrayOneValue() {
+    public void testCreateNumberArraySucceedsWithValidDoubleArraySingleValue() {
         double[] data = new double[] { 1.0 };
         Number[] numArray = DataUtilities.createNumberArray(data);
         compareDoubleAndNumberArray(data, numArray);
@@ -96,7 +96,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 8
     @Test
-    public void testCreateNumberArrayEmpty() {
+    public void testCreateNumberArraySucceedsWithValidEmptyDoubleArray() {
         double[] data = new double[] {};
         Number[] numArray = DataUtilities.createNumberArray(data);
         compareDoubleAndNumberArray(data, numArray);
@@ -104,7 +104,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 9
     @Test
-    public void testCreateNumberArrayThrowsIllegalArgumentException() {
+    public void testCreateNumberArrayThrowsIllegalArgumentExceptionWhenInputIsNull() {
         try {
             DataUtilities.createNumberArray(null);
             fail("Expected IllegalArgumentException.");
@@ -117,7 +117,7 @@ public class DataUtilitiesTests extends TestCase {
     // Test Create Number Array 2D
     // TC 1
     @Test
-    public void testCreateNumberArray2D() {
+    public void testCreateNumberArray2DSucceedsWithValidDoubleArrayAllPositive() {
         double[][] data = new double[][] { { 1.0, 2.0, 3.0 }, { 4.0, 5.0, 6.0 } };
         Number[][] numArray = DataUtilities.createNumberArray2D(data);
         compareDoubleAndNumberArray2D(numArray, data);
@@ -125,7 +125,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 2
     @Test
-    public void testCreateNumberArray2DAllNegativeValues() {
+    public void testCreateNumberArray2DAllNegativeValuesSucceedsWithValidDoubleArrayAllNegative() {
         double[][] data = new double[][] { { -1.0, -2.0, -3.0 }, { -4.0, -5.0, -6.0 } };
         Number[][] numArray = DataUtilities.createNumberArray2D(data);
         compareDoubleAndNumberArray2D(numArray, data);
@@ -133,7 +133,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 3
     @Test
-    public void testCreateNumberArray2DPositiveAndNegativeValues(){
+    public void testCreateNumberArray2DSucceedsWithValidDoubleArrayWithNegativeAndPositiveValues(){
         double[][] data = new double[][] { { -1.0, 2.0, -3.0 }, { 4.0, -5.0, 6.0 } };
         Number[][] numArray = DataUtilities.createNumberArray2D(data);
         compareDoubleAndNumberArray2D(numArray, data);
@@ -141,7 +141,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 4
     @Test
-    public void testCreateNumberArray2DExtremeUpperBound() {
+    public void testCreateNumberArray2DSucceedsWithValidDoubleArrayExtremeMaxDoubleValues() {
         double[][] data = new double[][] { { Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE }, { Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE } };
         Number[][] numArray = DataUtilities.createNumberArray2D(data);
         compareDoubleAndNumberArray2D(numArray, data);
@@ -149,7 +149,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 5
     @Test
-    public void testCreateNumberArray2DExtremeLowerBound() {
+    public void testCreateNumberArray2DSucceedsWithValidDoubleArrayExtremeMinDoubleValues() {
         double[][] data = new double[][] { { Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE }, { Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE } };
         Number[][] numArray = DataUtilities.createNumberArray2D(data);
         compareDoubleAndNumberArray2D(numArray, data);
@@ -157,7 +157,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 6
     @Test
-    public void testCreateNumberArray2DExtremeLowerBoundAndExtremeUpperBound(){
+    public void testCreateNumberArray2DSucceedsWithValidDoubleArrayExtremeMinAndExtremeMaxDoubleValues(){
         double[][] data = new double[][] { { Double.MIN_VALUE, 0.0, Double.MAX_VALUE }, { Double.MIN_VALUE, 0.0, Double.MAX_VALUE } };
         Number[][] numArray = DataUtilities.createNumberArray2D(data);
         compareDoubleAndNumberArray2D(numArray, data);
@@ -165,7 +165,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 7
     @Test
-    public void testCreateNumberArray2DOneValue() {
+    public void testCreateNumberArray2DSucceedsWithValidDoubleArraySingleValue() {
         double[][] data = new double[][] { { 1.0 } };
         Number[][] numArray = DataUtilities.createNumberArray2D(data);
         compareDoubleAndNumberArray2D(numArray, data);
@@ -173,7 +173,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 8
     @Test
-    public void testCreateNumberArray2DEmpty() {
+    public void testCreateNumberArray2DSucceedsWithValidEmpty2DDoubleArray() {
         double[][] data = new double[][] { {}, {} };
         Number[][] numArray = DataUtilities.createNumberArray2D(data);
         compareDoubleAndNumberArray2D(numArray, data);
@@ -181,7 +181,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 9
     @Test
-    public void testCreateNumberArray2DThrowsIllegalArgumentException() {
+    public void testCreateNumberArray2DThrowsIllegalArgumentExceptionWhenInputIsNull() {
         try {
             DataUtilities.createNumberArray2D(null);
             fail("Expected IllegalArgumentException.");
