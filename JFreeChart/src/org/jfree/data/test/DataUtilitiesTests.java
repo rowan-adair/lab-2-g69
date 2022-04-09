@@ -194,7 +194,7 @@ public class DataUtilitiesTests extends TestCase {
     // Calculate Column Total
     // TC 1
     @Test
-    public void testCalculateColumnTotal() {
+    public void testCalculateColumnTotalSucceedsWithValidPositiveValues() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         int expectedTotal = 0;
         for(int i = 0; i < 5; i++) {
@@ -207,7 +207,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 2
     @Test
-    public void testCalculateColumnTotalAllNegative(){
+    public void testCalculateColumnTotalSucceedsWithValidNegativeValues(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         int expectedTotal = 0;
         for(int i = 0; i < 5; i++) {
@@ -220,7 +220,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 3
     @Test
-    public void testCalculateColumnTotalOneValue(){
+    public void testCalculateColumnTotalSucceedsWithOneValue(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         int expectedTotal = 1;
         data.addValue(1, 0, 0);
@@ -230,7 +230,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 4
     @Test
-    public void testCalculateColumnTotalPositiveAndNegativeValues() {
+    public void testCalculateColumnTotalSucceedsWithPositiveAndNegativeValues() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         int expectedTotal = 0;
         for(int i = 0; i < 5; i++) {
@@ -247,7 +247,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 5
     @Test
-    public void testCalculateColumnTotalEqualZero(){
+    public void testCalculateColumnTotalSucceedsWithValuesTotallingToZero(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         int expectedTotal = 0;
         for(int i = 0; i < 5; i++) {
@@ -262,7 +262,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 6
     @Test
-    public void testCalculateColumnTotalExtremeLowerBound() {
+    public void testCalculateColumnTotalSucceedsWithExtremeLowerValues() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         double expectedTotal = Double.MIN_VALUE * 5;
         for (int i = 0; i < 5; i++) {
@@ -274,7 +274,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 7
     @Test
-    public void testCalculateColumnTotalExtremeUpperBound() {
+    public void testCalculateColumnTotalSucceedsWithExtremeUpperValues() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         double expectedTotal = Double.MAX_VALUE * 5;
         for (int i = 0; i < 5; i++) {
@@ -287,7 +287,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 8
     @Test
-    public void testCalculateColumnTotalFractionalValues() {
+    public void testCalculateColumnTotalSucceedsWithFractionalValues() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         double expectedTotal = 0;
         for (int i = 0; i < 5; i++) {
@@ -300,7 +300,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 9
     @Test
-    public void testCalculateColumnTotalFractionalNegativeValues(){
+    public void testCalculateColumnTotalSucceedsWithFractionalNegativeValues(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         double expectedTotal = 0;
         for (int i = 0; i < 5; i++) {
@@ -313,7 +313,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 10
     @Test
-    public void testCalculateColumnTotalPositiveAndNegativeFractionalValues(){
+    public void testCalculateColumnTotalSucceedsWithPositiveAndNegativeFractionalValues(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         double expectedTotal = 0;
         for (int i = 0; i < 5; i++) {
@@ -330,7 +330,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 11
     @Test
-    public void testCalculateColumnTotalIndexOutOfBounds() {
+    public void testCalculateColumnTotalThrowsIndexOutOfBoundsExceptionWhenIndexIsOutOfBounds() {
         DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
         defaultKeyedValues2D.addValue(1, 0, 0);
         try {
@@ -343,7 +343,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 12
     @Test
-    public void testCalculateColumnTotalNullData() {
+    public void testCalculateColumnTotalThrowsInvalidParameterExceptionWhenDataIsNull() {
         try {
             DataUtilities.calculateRowTotal(null, 0);
             fail("Exception NullPointerException expected");
@@ -356,7 +356,7 @@ public class DataUtilitiesTests extends TestCase {
     // Calculate Row Total
     // TC 1
     @Test
-    public void testCalculateRowTotal() {
+    public void testCalculateRowTotalSucceedsWithValidPositiveValues() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         int expectedTotal = 0;
         for(int i = 0; i < 5; i++) {
@@ -369,7 +369,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 2
     @Test
-    public void testCalculateRowTotalAllNegative(){
+    public void testCalculateRowTotalSucceedsWithValidNegativeValues(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         int expectedTotal = 0;
         for(int i = 0; i < 5; i++) {
@@ -382,7 +382,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 3
     @Test
-    public void testCalculateRowTotalOneValue(){
+    public void testCalculateRowTotalSucceedsWithOneValue(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         int expectedTotal = 1;
         data.addValue(1, 0, 0);
@@ -392,16 +392,16 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 4
     @Test
-    public void testCalculateRowTotalPositiveAndNegativeValues() {
+    public void testCalculateRowTotalSucceedsWithPositiveAndNegativeValues() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         int expectedTotal = 0;
         for(int i = 0; i < 5; i++) {
             expectedTotal += i;
-            data.addValue(i, i, 0);
+            data.addValue(i, 0, i);
         }
         for(int i = 5; i < 10; i++) {
             expectedTotal -= i;
-            data.addValue(-i, i, 0);
+            data.addValue(-i, 0,i);
         }
         double total = DataUtilities.calculateRowTotal(data, 0);
         assertEquals(expectedTotal, total, EPSILON);
@@ -409,7 +409,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 5
     @Test
-    public void testCalculateRowTotalEqualZero(){
+    public void testCalculateRowTotalSucceedsWithValuesTotallingToZero(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         int expectedTotal = 0;
         for(int i = 0; i < 5; i++) {
@@ -424,7 +424,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 6
     @Test
-    public void testCalculateRowTotalExtremeLowerBound() {
+    public void testCalculateRowTotalSucceedsWithExtremeLowerValues() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         double expectedTotal = Double.MIN_VALUE;
         data.addValue(Double.MIN_VALUE, 0, 0);
@@ -434,7 +434,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 7
     @Test
-    public void testCalculateRowTotalExtremeUpperBound() {
+    public void testCalculateRowTotalSucceedsWithExtremeUpperValues() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         double expectedTotal = Double.MAX_VALUE;
         data.addValue(Double.MAX_VALUE, 0, 0);
@@ -444,7 +444,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 8
     @Test
-    public void testCalculateRowTotalFractionalPositiveValues(){
+    public void testCalculateRowTotalSucceedsWithFractionalValues(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         double expectedTotal = 0;
         for (int i = 0; i < 5; i++) {
@@ -457,7 +457,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 9
     @Test
-    public void testCalculateRowTotalFractionalNegativeValues(){
+    public void testCalculateRowTotalSucceedsWithFractionalNegativeValues(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         double expectedTotal = 0;
         for (int i = 0; i < 5; i++) {
@@ -470,7 +470,7 @@ public class DataUtilitiesTests extends TestCase {
 
     //  TC 10
     @Test
-    public void testCalculateRowTotalPositiveAndNegativeFractionalValues(){
+    public void testCalculateRowTotalSucceedsWithPositiveAndNegativeFractionalValues(){
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         double expectedTotal = 0;
         for (int i = 0; i < 5; i++) {
@@ -487,7 +487,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 11
     @Test
-    public void testCalculateRowTotalIndexOutOfBounds() {
+    public void testCalculateRowTotalThrowsIndexOutOfBoundsExceptionWhenIndexIsOutOfBounds() {
         DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
         defaultKeyedValues2D.addValue(1, 0, 0);
         try {
@@ -500,7 +500,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 12
     @Test
-    public void testCalculateRowTotalNullData() {
+    public void testCalculateRowTotalThrowsInvalidParameterExceptionWhenDataIsNull() {
         try {
             DataUtilities.calculateRowTotal(null, 0);
             fail("Exception NullPointerException expected");
@@ -513,7 +513,7 @@ public class DataUtilitiesTests extends TestCase {
     // Tests for getCumulativePercentages
     // TC 1
     @Test
-    public void testGetCumulativePercentages() {
+    public void testGetCumulativePercentagesSucceedsWithAllPositiveValues() {
         DefaultKeyedValues data = new DefaultKeyedValues();
 
         data.addValue("0", 5);
@@ -555,7 +555,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 4
     @Test
-    public void testGetCumulativePercentagesOneValue() {
+    public void testGetCumulativePercentagesSucceedsWithSingleValue() {
         DefaultKeyedValues data = new DefaultKeyedValues();
         data.addValue("0", 5);
         KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
@@ -564,7 +564,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 5
     @Test
-    public void testGetCumulativePercentagesNegativeValue() {
+    public void testGetCumulativePercentagesNegativeValueSucceedsWithSingleNegativeValue() {
         DefaultKeyedValues data = new DefaultKeyedValues();
         data.addValue("0", -5);
         KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
@@ -573,7 +573,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 6
     @Test
-    public void testGetCumulativePercentagesZeroValue() {
+    public void testGetCumulativePercentagesSucceedsWithSingleZeroValue() {
         DefaultKeyedValues data = new DefaultKeyedValues();
         data.addValue("0", 0);
         KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
@@ -582,7 +582,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 7
     @Test
-    public void testGetCumulativePercentagesNullData() {
+    public void testGetCumulativePercentagesThrowsInvalidParameterExceptionWithNullData() {
         try {
             DataUtilities.getCumulativePercentages(null);
             fail("Exception InvalidParameterException expected");
@@ -593,7 +593,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 8
     @Test
-    public void testGetCumulativePercentagesEmptyData() {
+    public void testGetCumulativePercentagesSucceedsWithEmptyData() {
         DefaultKeyedValues data = new DefaultKeyedValues();
         KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
         assertEquals(0, percentages.getItemCount());
@@ -601,7 +601,7 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 9
     @Test
-    public void testGetCumulativePercentagesWithNullValues() {
+    public void testGetCumulativePercentagesReturnsNaNWithNullSingleValue() {
         DefaultKeyedValues data = new DefaultKeyedValues();
         data.addValue("0", null);
         KeyedValues percentages = DataUtilities.getCumulativePercentages(data);
