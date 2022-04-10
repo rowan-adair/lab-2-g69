@@ -113,6 +113,26 @@ public class DataUtilitiesTests extends TestCase {
         }
     }
 
+    /**
+    // TC 10
+    @Test
+    public void testCreateNumberArrayDoesNotCompileWithNullValueDoubleArray() {
+        double[] data = new double[] {null};
+        Number[] numArray = DataUtilities.createNumberArray(data);
+        compareDoubleAndNumberArray(data, numArray);
+    }
+    */
+
+    /**
+    // TC 11
+    @Test
+    public void testCreateNumberArrayDoesNotCompileWithNullAndValidDoubleArray() {
+        double[] data = new double[] {null, 1.0};
+        Number[] numArray = DataUtilities.createNumberArray(data);
+        compareDoubleAndNumberArray(data, numArray);
+    }
+    */
+
     //******************************************************************************************************************
     // Test Create Number Array 2D
     // TC 1
@@ -171,7 +191,27 @@ public class DataUtilitiesTests extends TestCase {
         compareDoubleAndNumberArray2D(numArray, data);
     }
 
+    /**
     // TC 8
+    @Test
+    public void testCreateNumberArray2DSucceedsWithDoubleArrayWithJustNullValues() {
+        double[][] data = new double[][] { {null };
+        Number[][] numArray = DataUtilities.createNumberArray2D(data);
+        compareDoubleAndNumberArray2D(numArray, data);
+    }
+    */
+
+    /**
+     // TC 9
+     @Test
+     public void testCreateNumberArray2DSucceedsWithDoubleArrayWithNullValues() {
+     double[][] data = new double[][] { {null, 1.0} };
+     Number[][] numArray = DataUtilities.createNumberArray2D(data);
+     compareDoubleAndNumberArray2D(numArray, data);
+     }
+     */
+
+    // TC 10
     @Test
     public void testCreateNumberArray2DSucceedsWithValidEmpty2DDoubleArray() {
         double[][] data = new double[][] { {}, {} };
@@ -179,12 +219,12 @@ public class DataUtilitiesTests extends TestCase {
         compareDoubleAndNumberArray2D(numArray, data);
     }
 
-    // TC 9
+    // TC 11
     @Test
     public void testCreateNumberArray2DThrowsIllegalArgumentExceptionWhenInputIsNull() {
         try {
             DataUtilities.createNumberArray2D(null);
-            fail("Expected IllegalArgumentException.");
+            fail("Expected InvalidParameterException.");
         } catch (Exception  e) {
             assertEquals(InvalidParameterException.class, e.getClass());
         }
@@ -284,7 +324,6 @@ public class DataUtilitiesTests extends TestCase {
         assertEquals(expectedTotal, total, EPSILON);
     }
 
-
     // TC 8
     @Test
     public void testCalculateColumnTotalSucceedsWithFractionalValues() {
@@ -328,27 +367,69 @@ public class DataUtilitiesTests extends TestCase {
         assertEquals(expectedTotal, total, EPSILON);
     }
 
-    // TC 11
+    // TC 11: Test calculateColumnTotal with null data throws invalid parameter exception
     @Test
-    public void testCalculateColumnTotalThrowsIndexOutOfBoundsExceptionWhenIndexIsOutOfBounds() {
-        DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
-        defaultKeyedValues2D.addValue(1, 0, 0);
+    public void testCalculateColumnTotalThrowsInvalidParameterExceptionWhenDataIsNull() {
         try {
-            DataUtilities.calculateColumnTotal(defaultKeyedValues2D, -1);
-            fail("Exception index out of bounds expected");
+            DataUtilities.calculateColumnTotal(null, 0);
+            fail("Exception InvalidParameterException expected");
+        } catch(Exception e) {
+            assertEquals(InvalidParameterException.class, e.getClass());
+        }
+    }
+    /**
+    // TC 12: Test calculateColumnTotal with null column throws invalid parameter exception
+    @Test
+    public void testCalculateColumnTotalThrowsInvalidParameterExceptionWhenColumnIsNull() {
+        DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+        try {
+            DataUtilities.calculateColumnTotal(data, null);
+            fail("Exception InvalidParameterException expected");
+        } catch(Exception e) {
+            assertEquals(InvalidParameterException.class, e.getClass());
+        }
+    }
+    */
+
+    // TC 13: Test calculateColumnTotal with invalid column throws invalid parameter exception
+    @Test
+    public void testCalculateColumnTotalThrowsInvalidParameterExceptionWhenColumnIsInvalid() {
+        DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+        for (int i = 0; i < 5; i++) {
+            data.addValue(i, i, 0);
+        }
+        try {
+            DataUtilities.calculateColumnTotal(data, -1);
+            fail("Exception InvalidParameterException expected");
         } catch(Exception e) {
             assertEquals(InvalidParameterException.class, e.getClass());
         }
     }
 
-    // TC 12
+    // TC 14: Test calculateColumnTotal with invalid column throws invalid parameter exception
     @Test
-    public void testCalculateColumnTotalThrowsInvalidParameterExceptionWhenDataIsNull() {
+    public void testCalculateColumnTotalThrowsInvalidParameterExceptionWhenColumnIsTooLarge() {
+        DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+        for (int i = 0; i < 5; i++) {
+            data.addValue(i, i, 0);
+        }
         try {
-            DataUtilities.calculateRowTotal(null, 0);
-            fail("Exception NullPointerException expected");
+            DataUtilities.calculateColumnTotal(data, 10);
+            fail("Exception IndexOutOfBoundsException expected");
         } catch(Exception e) {
-            assertEquals(InvalidParameterException.class, e.getClass());
+            assertEquals(IndexOutOfBoundsException.class, e.getClass());
+        }
+    }
+
+    // TC 15: Test calculateColumnTotal with invalid out-of-bounds column throws invalid parameter exception
+    @Test
+    public void testCalculateColumnTotalThrowsInvalidParameterExceptionWhenColumnIsTooSmall() {
+        DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+        try {
+            DataUtilities.calculateColumnTotal(data, -1);
+            fail("Exception IndexOutOfBoundsException expected");
+        } catch(Exception e) {
+            assertEquals(IndexOutOfBoundsException.class, e.getClass());
         }
     }
 
@@ -487,23 +568,50 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 11
     @Test
-    public void testCalculateRowTotalThrowsIndexOutOfBoundsExceptionWhenIndexIsOutOfBounds() {
+    public void testCalculateRowTotalThrowsInvalidParameterExceptionWhenRowIndexIsOutOfBounds() {
+        DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+        double total = DataUtilities.calculateRowTotal(data, 0);
+        assertEquals(0.0, total, EPSILON);
+    }
+
+    // TC 12: Test calculate row total succeeds with null values in row.
+    @Test
+    public void testCalculateRowTotalSucceedsWithNullValuesInRow() {
         DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
-        defaultKeyedValues2D.addValue(1, 0, 0);
+        defaultKeyedValues2D.addValue(1.0, 0, 0);
+        defaultKeyedValues2D.addValue(null, 0, 1);
+        double total = DataUtilities.calculateRowTotal(defaultKeyedValues2D, 0);
+        assertEquals(1.0, total, EPSILON);
+    }
+
+    // TC 13: Test calculate row total succeeds with just null values in row.
+    @Test
+    public void testCalculateRowTotalSucceedsWithJustNullValuesInRow() {
+        DefaultKeyedValues2D defaultKeyedValues2D = new DefaultKeyedValues2D();
+        defaultKeyedValues2D.addValue(null, 0, 0);
+        double total = DataUtilities.calculateRowTotal(defaultKeyedValues2D, 0);
+        assertEquals(0.0, total, EPSILON);
+    }
+
+    // TC 14
+    @Test
+    public void testCalculateRowTotalThrowsInvalidParameterExceptionWhenRowIndexIsNegative() {
+        DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+        data.addValue(1, 0, 0);
         try {
-            DataUtilities.calculateRowTotal(defaultKeyedValues2D, 1);
-            fail("Exception NullPointerException expected");
+            DataUtilities.calculateRowTotal(data, -1);
+            fail("Exception InvalidParameterException expected");
         } catch(Exception e) {
             assertEquals(InvalidParameterException.class, e.getClass());
         }
     }
 
-    // TC 12
+    // TC 15
     @Test
-    public void testCalculateRowTotalThrowsInvalidParameterExceptionWhenDataIsNull() {
+    public void testCalculateRowTotalThrowsInvalidParameterExceptionWhenRowIndexIsTooLarge() {
         try {
             DataUtilities.calculateRowTotal(null, 0);
-            fail("Exception NullPointerException expected");
+            fail("Exception InvalidParameterException expected");
         } catch(Exception e) {
             assertEquals(InvalidParameterException.class, e.getClass());
         }

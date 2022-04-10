@@ -19,104 +19,129 @@ public class RangeTest extends TestCase {
 	// Tests for contains
 	// TC 1: Test contains() with positive lower and upper margins
 	@Test
-	public void testContains() {
+	public void testContainsReturnsTrueWithValueInRange() {
 		Range r = new Range(1.0, 2.0);
 		assertTrue(r.contains(1.5));
 	}
 
 	// TC 2: Test contains outside of range lower bound
 	@Test
-	public void testContainsSmallerThanLower() {
+	public void testContainsReturnsFalseWithValueSmallerThanLowerBound() {
 		Range r = new Range(1.0, 2.0);
 		assertFalse(r.contains(0.5));
 	}
 
 	// TC 3: Test contains outside of range upper bound
 	@Test
-	public void testContainsGreaterThanUpper() {
+	public void testContainsReturnsFalseWithValueGreaterThanUpperBound() {
 		Range r = new Range(1.0, 2.0);
 		assertFalse(r.contains(3.5));
 	}
 
-	// TC 4: Test contains within negative to positive range
+	// TC 4: Test contains returns true with value equal to lower bound
 	@Test
-	public void testContainsNegativeLowerMargin() {
+	public void testContainsReturnsTrueWithValueEqualToLowerBound() {
+		Range r = new Range(1.0, 2.0);
+		assertTrue(r.contains(1.0));
+	}
+
+	// TC 5: Test contains returns true with value equal to upper bound
+	@Test
+	public void testContainsReturnsTrueWithValueEqualToUpperBound() {
+		Range r = new Range(1.0, 2.0);
+		assertTrue(r.contains(2.0));
+	}
+
+	// TC 6: Test contains within negative to positive range
+	@Test
+	public void testContainsReturnsTrueWithValueInNegativeRange() {
 		Range r = new Range(-1.0, 2.0);
 		assertTrue(r.contains(-0.5));
 	}
 
-	// TC 5: Test contains outside of negative to positive range
+	// TC 7: Test contains returns false with value smaller than lower bound in negative range
 	@Test
-	public void testContainsNegativeLowerAndUpper() {
+	public void testContainsReturnsFalseWithValueSmallerThanLowerBoundInNegativeRange() {
 		Range r = new Range(-2.0, -1.0);
-		assertTrue(r.contains(-1.5));
+		assertFalse(r.contains(-2.5));
 	}
 
-	// TC 6: Test contains extreme lower
+	// TC 8: Test contains returns false with value greater than upper bound in negative range
 	@Test
-	public void testContainsExtremeLower() {
-		Range r = new Range(-1.0, 2.0);
+	public void testContainsReturnsFalseWithValueGreaterThanUpperBoundInNegativeRange() {
+		Range r = new Range(-2.0, -1.0);
+		assertFalse(r.contains(0.0));
+	}
+
+	// TC 9: Test contains returns true with value equal to lower bound
+	@Test
+	public void testContainsReturnsTrueWithValueEqualToLowerBoundInNegativeRange() {
+		Range r = new Range(-2.0, -1.0);
+		assertTrue(r.contains(-2.0));
+	}
+
+	// TC 10: Test contains returns true with value equal to upper bound
+	@Test
+	public void testContainsReturnsTrueWithValueEqualToUpperBoundInNegativeRange() {
+		Range r = new Range(-2.0, -1.0);
 		assertTrue(r.contains(-1.0));
 	}
-
-	// TC 7: Test contains extreme upper
+	// TC 11: Test contains returns false with NaN value
 	@Test
-	public void testContainsExtremeUpper() {
-		Range r = new Range(-1.0, 2.0);
-		assertTrue(r.contains(2.0));
+	public void testContainsReturnsFalseWithNaNValue() {
+		Range r = new Range(-1.0, 1.0);
+		assertFalse(r.contains(Double.NaN));
 	}
+
+	// TC 12: Test contains returns true for maximum upper bound
+	@Test
+	public void testContainsReturnsTrueForMaxValueUpperBound() {
+		Range r = new Range(Double.MIN_VALUE, Double.MAX_VALUE);
+		assertTrue(r.contains(Double.MAX_VALUE));
+	}
+
+	// TC 13: Test contains returns true for minimum lower bound
+	@Test
+	public void testContainsReturnsTrueForMinValueLowerBound() {
+		Range r = new Range(Double.MIN_VALUE, Double.MAX_VALUE);
+		assertTrue(r.contains(Double.MIN_VALUE));
+	}
+
+	// TC 14: Test contains returns true for maximum upper bound plus one
+	@Test
+	public void testContainsReturnsTrueForMaxDoublePlusOne() {
+		Range r = new Range(0.0, Double.MAX_VALUE);
+		assertTrue(r.contains(Double.MAX_VALUE + 1));
+	}
+
+	// TC 15: Test contains returns true for minimum lower bound minus one
+	@Test
+	public void testContainsReturnsTrueForMinDoubleMinusOne() {
+		Range r = new Range(Double.MIN_VALUE, 0.0);
+		assertTrue(r.contains(Double.MIN_VALUE - 1));
+	}
+
+	// TC 16: Test contains does not compile with null
+	/**
+	@Test
+	public void testContainsReturnsFalseWithNullValue() {
+		Range r = new Range(-1.0, 1.0);
+		assertFalse(r.contains(null));
+	}
+	**/
 
 	//**************************************************************************************************************
 	// Tests for expand()
-	// TC 1: Test expand() with positive lower and upper margins
-	@Test
-	public void testExpand() {
-		Range r = new Range(1.0, 2.0);
-		Range.expand(r, 0.0, 3.0);
-		assertEquals(4.0, r.getLength(), EPSILON);
-	}
+	// TC 1: Test expand()
 
-	// TC 2: Test expand() with negative lower and upper margins
-	@Test
-	public void testExpandNegativeLowerMargin() {
-		Range r = new Range(1.0, 2.0);
-		Range.expand(r, -1.0, 3.0);
-		assertEquals(4.0, r.getLength(), EPSILON);
-	}
 
-	// TC 3: Test expand() with zero lower margin
-	@Test
-	public void testExpandZeroLowerMargin() {
-		Range r = new Range(1.0, 2.0);
-		Range.expand(r, 0.0, 3.0);
-		assertEquals(4.0, r.getLength(), EPSILON);
-	}
 
-	// TC 4: Test expand() with zero upper margin
-	@Test
-	public void testExpandZeroUpperMargin(){
-		Range r = new Range(1.0, 2.0);
-		Range.expand(r, 0.0, -1.0);
-		assertEquals(4.0, r.getLength(), EPSILON);
-	}
-
-	// TC 5: Test expand() with zero lower and upper margins
-	@Test
-	public void testExpandInvalidNegativeMargins(){
-		try {
-			Range r = new Range(1.0, 2.0);
-			Range.expand(r, -1.0, 0.0);
-		} catch (Exception e) {
-			assertEquals(IllegalArgumentException.class, e.getClass());
-		}
-	}
 
 	// TC 6: Test expand() with negative upper margin
 	@Test
-	public void testExpandNegativeUpperMargin(){
+	public void testExpandThrowsIllegalArgumentExceptionWithNullRange(){
 		try {
-			Range r = new Range(1.0, 2.0);
-			Range.expand(r, 1.0, -2.0);
+			Range.expand(null, 1.0, -2.0);
 		} catch (Exception e) {
 			assertEquals(IllegalArgumentException.class, e.getClass());
 		}

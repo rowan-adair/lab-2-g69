@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2b72264a-05c2-449c-8845-ffcc3ff5e601" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JFreeChart/bin/org/jfree/data/test/DataUtilitiesTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/JFreeChart/bin/org/jfree/data/test/DataUtilitiesTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JFreeChart/bin/org/jfree/data/test/RangeTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/JFreeChart/bin/org/jfree/data/test/RangeTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JFreeChart/bin/org/jfree/data/test/RangeTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/JFreeChart/bin/org/jfree/data/test/RangeTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JFreeChart/src/org/jfree/data/test/DataUtilitiesTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/JFreeChart/src/org/jfree/data/test/DataUtilitiesTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JFreeChart/src/org/jfree/data/test/RangeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/JFreeChart/src/org/jfree/data/test/RangeTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="8d798497-5453-49ad-aba9-2cb4c3154106" />
+        <option name="url" value="https://github.com/rowan-adair/lab-2-g69.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="279LJRhHRHoMyu1OwKgy6yAI5wY" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/JFreeChart/src/org/jfree/data/test/RangeTests.java" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/JFreeChart/src/org/jfree/data/test/RangeTests.java" />
+  </component>
+  <component name="RunManager" selected="JUnit.RangeTest.testExpandFailsWithUpperMarginLessThanLowerMargin">
+    <configuration name="DataUtilitiesTests.testCalculateRowTotalSucceedsWithValidNegativeValues" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JFreeChart" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.jfree.data.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.jfree.data.test" />
+      <option name="MAIN_CLASS_NAME" value="org.jfree.data.test.DataUtilitiesTests" />
+      <option name="METHOD_NAME" value="testCalculateRowTotalSucceedsWithValidNegativeValues" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RangeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JFreeChart" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.jfree.data.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.jfree.data.test" />
+      <option name="MAIN_CLASS_NAME" value="org.jfree.data.test.RangeTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RangeTest.testContainsReturnsTrueForMaxDoublePlusOne" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JFreeChart" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.jfree.data.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.jfree.data.test" />
+      <option name="MAIN_CLASS_NAME" value="org.jfree.data.test.RangeTest" />
+      <option name="METHOD_NAME" value="testContainsReturnsTrueForMaxDoublePlusOne" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RangeTest.testExpandFailsWithUpperMarginLessThanLowerMargin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JFreeChart" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.jfree.data.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.jfree.data.test" />
+      <option name="MAIN_CLASS_NAME" value="org.jfree.data.test.RangeTest" />
+      <option name="METHOD_NAME" value="testExpandFailsWithUpperMarginLessThanLowerMargin" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RangeTest.testExpandSucceedsWithLowerMarginLessThanLowerBound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JFreeChart" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.jfree.data.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.jfree.data.test" />
+      <option name="MAIN_CLASS_NAME" value="org.jfree.data.test.RangeTest" />
+      <option name="METHOD_NAME" value="testExpandSucceedsWithLowerMarginLessThanLowerBound" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.DataUtilitiesTests.testCalculateRowTotalSucceedsWithValidNegativeValues" />
+      <item itemvalue="JUnit.RangeTest.testContainsReturnsTrueForMaxDoublePlusOne" />
+      <item itemvalue="JUnit.RangeTest" />
+      <item itemvalue="JUnit.RangeTest.testExpandFailsWithUpperMarginLessThanLowerMargin" />
+      <item itemvalue="JUnit.RangeTest.testExpandSucceedsWithLowerMarginLessThanLowerBound" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.RangeTest.testExpandFailsWithUpperMarginLessThanLowerMargin" />
+        <item itemvalue="JUnit.RangeTest" />
+        <item itemvalue="JUnit.RangeTest.testExpandSucceedsWithLowerMarginLessThanLowerBound" />
+        <item itemvalue="JUnit.RangeTest.testContainsReturnsTrueForMaxDoublePlusOne" />
+        <item itemvalue="JUnit.DataUtilitiesTests.testCalculateRowTotalSucceedsWithValidNegativeValues" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2b72264a-05c2-449c-8845-ffcc3ff5e601" name="Changes" comment="" />
+      <created>1648727294055</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1648727294055</updated>
+      <workItem from="1648727295752" duration="2058000" />
+      <workItem from="1648729809149" duration="463000" />
+      <workItem from="1648730772859" duration="5702000" />
+      <workItem from="1648997748149" duration="1252000" />
+      <workItem from="1648999173012" duration="1196000" />
+      <workItem from="1649060833647" duration="18235000" />
+      <workItem from="1649173173126" duration="1869000" />
+      <workItem from="1649251842955" duration="1186000" />
+      <workItem from="1649270381905" duration="171000" />
+      <workItem from="1649270592691" duration="124000" />
+      <workItem from="1649270742931" duration="5017000" />
+      <workItem from="1649328914456" duration="2181000" />
+      <workItem from="1649333391435" duration="8285000" />
+      <workItem from="1649345893399" duration="164000" />
+      <workItem from="1649347016187" duration="2662000" />
+      <workItem from="1649363699540" duration="25000" />
+      <workItem from="1649364232918" duration="4980000" />
+      <workItem from="1649374773454" duration="1040000" />
+      <workItem from="1649408908988" duration="4631000" />
+      <workItem from="1649415849539" duration="4268000" />
+      <workItem from="1649424048241" duration="3022000" />
+      <workItem from="1649518378966" duration="4378000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/lab_2_workspace$DataUtilitiesTests.ic" NAME="DataUtilitiesTests Coverage Results" MODIFIED="1649251987465" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.jfree.data.test.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/lab_2_workspace$DataUtilitiesTests_testGetCumulativePercentagesPositiveAndNegativeValues.ic" NAME="DataUtilitiesTests.testGetCumulativePercentagesPositiveAndNegativeValues Coverage Results" MODIFIED="1649251880354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.jfree.data.test.*</FILTER>
+    </SUITE>
+  </component>
+</project>
