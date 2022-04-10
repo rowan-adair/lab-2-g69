@@ -132,16 +132,66 @@ public class RangeTest extends TestCase {
 
 	//**************************************************************************************************************
 	// Tests for expand()
-	// TC 1: Test expand()
 
+	// TC 1: Test expand with positive lower and upper margins
+	@Test
+	public void testExpandReturnsSucceedsWithPositiveUpperMarginAndPositiveLowerMargin() {
+		Range r = new Range(1.0, 10.0);
+		Range r2 = Range.expand(r, 0.5, 0.5);
+		assertEquals(r2.getUpperBound(), 14.5, 0.0);
+		assertEquals(r2.getLowerBound(), -3.5, 0.0);
+	}
 
+	// TC 2: Test expand with negative lower and positive upper margins
+	@Test
+	public void testExpandReturnsSucceedsWithNegativeLowerMarginAndPositiveUpperMargin() {
+		Range r = new Range(1.0, 10.0);
+		Range r2 = Range.expand(r, -0.5, 0.5);
+		assertEquals(r2.getUpperBound(), 14.5, 0.0);
+		assertEquals(r2.getLowerBound(), 5.5, 0.0);
+	}
 
+	// TC 3: Test expand with positive lower and negative upper margins
+	@Test
+	public void testExpandReturnsSucceedsWithPositiveLowerMarginAndNegativeUpperMargin() {
+		Range r = new Range(1.0, 10.0);
+		Range r2 = Range.expand(r, 0.5, -0.5);
+		assertEquals(r2.getUpperBound(), 5.5, 0.0);
+		assertEquals(r2.getLowerBound(), -3.5, 0.0);
+	}
 
-	// TC 6: Test expand() with negative upper margin
+	// TC 4: Test expand with negative lower and negative upper margins
+	@Test
+	public void testExpandReturnsSucceedsWithNegativeLowerMarginAndNegativeUpperMargin() {
+		Range r = new Range(1.0, 10.0);
+		Range r2 = Range.expand(r, -0.5, -0.5);
+		assertEquals(r2.getUpperBound(), 5.5, 0.0);
+		assertEquals(r2.getLowerBound(), 5.5, 0.0);
+	}
+
+	// TC 5: Test expand zero value lower margin and positive upper margin
+	@Test
+	public void testExpandReturnsSucceedsWithZeroLowerMarginAndPositiveUpperMargin() {
+		Range r = new Range(1.0, 10.0);
+		Range r2 = Range.expand(r, 0.0, 0.5);
+		assertEquals(r2.getUpperBound(), 1.0, 0.0);
+		assertEquals(r2.getLowerBound(), 14.5, 0.0);
+	}
+
+	// TC 6: Test expands positive lower margin and zero upper margin
+	@Test
+	public void testExpandReturnsSucceedsWithPositiveLowerMarginAndZeroUpperMargin() {
+		Range r = new Range(1.0, 10.0);
+		Range r2 = Range.expand(r, 0.5, 0.0);
+		assertEquals(r2.getUpperBound(), 10.0, 0.0);
+		assertEquals(r2.getLowerBound(), -3.5, 0.0);
+	}
+
+	// TC 10: Test expand() with negative upper margin
 	@Test
 	public void testExpandThrowsIllegalArgumentExceptionWithNullRange(){
 		try {
-			Range.expand(null, 1.0, -2.0);
+			Range.expand(null, 0.5, 0.5);
 		} catch (Exception e) {
 			assertEquals(IllegalArgumentException.class, e.getClass());
 		}
