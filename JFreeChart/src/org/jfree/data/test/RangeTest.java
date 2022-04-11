@@ -234,69 +234,114 @@ public class RangeTest extends TestCase {
 
 	//**************************************************************************************************************
 	// Tests for constrain()
+	//tc1
 	@Test
 	public void testConstrainWithinRange() {
 		Range C1 = new Range(1, 10);
 		assertEquals("contains: Did not return expected output", 9.0, C1.constrain(9));
 	}
+	//tc2
 	@Test
 	public void testConstrainOutsideRange() {
 		Range C2 = new Range(1, 10);
 		assertEquals("contains: Did not return expected output", 10.0, C2.constrain(11));
 	}
+	//tc3
 	@Test
 	public void testConstrainOutsideRangeNegative() {
 		Range C3 = new Range(1, 10);
 		assertEquals("contains: Did not return expected output", 1, C3.constrain(-10));
 	}
+	//tc4
 	@Test
 	public void testConstrainNegativeWithinRange() {
 		Range C4 = new Range(-10, -1);
 		assertEquals("contains: Did not return expected output", -9.0, C4.constrain(-9));
 	}
+	
+	
+	//tc 5
 	@Test
 	public void testConstrainDecimal() {
 		Range C5 = new Range(1, 10);
-		assertEquals("contains: Did not return expected output", 10.0, C5.constrain(12.3));
+		assertEquals("constrain: Did not return expected output", 10.0, C5.constrain(12.3));
 	}
+	//6
+	@Test
+	public void testConstrainsReturnsFalseWithNaNValue() {
+		Range r = new Range(-1.0, 1.0);
+		assertEquals("constrain: Did not return expected output",1.0, r.constrain(Double.NaN));
+	}
+//tc8
+	@Test
+	public void testConstrainsReturnsMaxValueForMaxValueUpperBound() {
+		Range r = new Range(Double.MIN_VALUE, Double.MAX_VALUE);
+		assertEquals("constrain: Did not return expected output",Double.MAX_VALUE, r.constrain(Double.MAX_VALUE));
+	}
+	//tc9
+
+	@Test
+	public void testConstrainsReturnsMinValueForMinValueLowerBound() {
+		Range r = new Range(Double.MIN_VALUE, Double.MAX_VALUE);
+		assertEquals("constrain: Did not return expected output",Double.MIN_VALUE, r.constrain(Double.MIN_VALUE));
+	}
+
+	//tc10
+	@Test
+	public void testConstrainsReturnsMaxDoubleForMaxDoublePlusOne() {
+		Range r = new Range(0.0, Double.MAX_VALUE);
+		assertEquals("constrain: Did not return expected output",Double.MAX_VALUE, r.constrain(Double.MAX_VALUE+1));
+	}
+
+	// tc11
+	@Test
+	public void testConstrainsReturnsMinDoubleForMinDoubleMinusOne() {
+		Range r = new Range(Double.MIN_VALUE, 0.0);
+		assertEquals("constrain: Did not return expected output",Double.MIN_VALUE, r.constrain(Double.MIN_VALUE-1));
+	}
+
+
+	
+	
 
 	//**************************************************************************************************************
 	// Tests for shift()
+	//tc1
 	@Test
 	public void testShiftby1() {
 		Range D1 = new Range(0, 10);
 		Range d1 = new Range(1, 11);
 		assertEquals("contains: Did not return expected output", d1, Range.shift(D1, 1));
 	}
-
+//tc2
 	@Test
 	public void testShiftByMoreThan1() {
 		Range D2 = new Range(0, 10);
 		Range d2 = new Range(10, 20);
 		assertEquals("contains: Did not return expected output", d2, Range.shift(D2, 10));
 	}
-
+//tc3
 	@Test
 	public void testShiftByNegative() {
 		Range D3 = new Range(0, 10);
 		Range d3 = new Range(-1, 9);
 		assertEquals("contains: Did not return expected output", d3, Range.shift(D3, -1));
 	}
-
+//tc4
 	@Test
 	public void testShiftByDecimal() {
 		Range D4 = new Range(0, 10);
 		Range d4 = new Range(0.5, 10.5);
 		assertEquals("contains: Did not return expected output", d4, Range.shift(D4, 0.5));
 	}
-
+//tc5
 	@Test
-	public void testShiftByLargeNegDecimal() {
+	public void testShiftByLargeNegativeDecimal() {
 		Range D5 = new Range(0, 10);
 		Range d5 = new Range(-100, -90);
 		assertEquals("contains: Did not return expected output", d5, Range.shift(D5, -100));
 	}
-
+//tc 6 and 7 do not compile
 	//*********************************************************************************************
 	// Test for expandToInclude()
 	// TC 1: Test expandToInclude() with positive lower and upper margins
@@ -346,7 +391,7 @@ public class RangeTest extends TestCase {
 		r = Range.expandToInclude(r, 3.0);
 		assertEquals(2.0, r.getLength(), EPSILON);
 	}
-
+//tc10
 	@Test
 	public void testExpandToIncludeNullRangeCreatesNewRange() {
 		Range r = Range.expandToInclude(null,10.0);
