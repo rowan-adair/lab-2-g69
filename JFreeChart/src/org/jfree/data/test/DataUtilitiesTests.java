@@ -108,8 +108,8 @@ public class DataUtilitiesTests extends TestCase {
         try {
             DataUtilities.createNumberArray(null);
             fail("Expected IllegalArgumentException.");
-        } catch (IllegalArgumentException e) {
-            // expected
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
         }
     }
 
@@ -224,9 +224,9 @@ public class DataUtilitiesTests extends TestCase {
     public void testCreateNumberArray2DThrowsIllegalArgumentExceptionWhenInputIsNull() {
         try {
             DataUtilities.createNumberArray2D(null);
-            fail("Expected InvalidParameterException.");
+            fail("Expected IllegalArgumentException.");
         } catch (Exception  e) {
-            assertEquals(InvalidParameterException.class, e.getClass());
+            assertEquals(IllegalArgumentException.class, e.getClass());
         }
     }
 
@@ -369,46 +369,46 @@ public class DataUtilitiesTests extends TestCase {
 
     // TC 11: Test calculateColumnTotal with null data throws invalid parameter exception
     @Test
-    public void testCalculateColumnTotalThrowsInvalidParameterExceptionWhenDataIsNull() {
+    public void testCalculateColumnTotalThrowsIllegalArgumentExceptionWhenDataIsNull() {
         try {
             DataUtilities.calculateColumnTotal(null, 0);
-            fail("Exception InvalidParameterException expected");
+            fail("Exception IllegalArgumentException expected");
         } catch(Exception e) {
-            assertEquals(InvalidParameterException.class, e.getClass());
+            assertEquals(IllegalArgumentException.class, e.getClass());
         }
     }
     /**
     // TC 12: Test calculateColumnTotal with null column throws invalid parameter exception
     @Test
-    public void testCalculateColumnTotalThrowsInvalidParameterExceptionWhenColumnIsNull() {
+    public void testCalculateColumnTotalThrowsIllegalArgumentExceptionWhenColumnIsNull() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         try {
             DataUtilities.calculateColumnTotal(data, null);
-            fail("Exception InvalidParameterException expected");
+            fail("Exception IllegalArgumentException expected");
         } catch(Exception e) {
-            assertEquals(InvalidParameterException.class, e.getClass());
+            assertEquals(IllegalArgumentException.class, e.getClass());
         }
     }
     */
 
     // TC 13: Test calculateColumnTotal with invalid column throws invalid parameter exception
     @Test
-    public void testCalculateColumnTotalThrowsInvalidParameterExceptionWhenColumnIsInvalid() {
+    public void testCalculateColumnTotalThrowsIllegalArgumentExceptionWhenColumnIsInvalid() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         for (int i = 0; i < 5; i++) {
             data.addValue(i, i, 0);
         }
         try {
             DataUtilities.calculateColumnTotal(data, -1);
-            fail("Exception InvalidParameterException expected");
+            fail("Exception IllegalArgumentException expected");
         } catch(Exception e) {
-            assertEquals(InvalidParameterException.class, e.getClass());
+            assertEquals(IllegalArgumentException.class, e.getClass());
         }
     }
 
     // TC 14: Test calculateColumnTotal with invalid column throws invalid parameter exception
     @Test
-    public void testCalculateColumnTotalThrowsInvalidParameterExceptionWhenColumnIsTooLarge() {
+    public void testCalculateColumnTotalThrowsIllegalArgumentExceptionWhenColumnIsTooLarge() {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         for (int i = 0; i < 5; i++) {
             data.addValue(i, i, 0);
@@ -599,16 +599,17 @@ public class DataUtilitiesTests extends TestCase {
         DefaultKeyedValues2D data = new DefaultKeyedValues2D();
         data.addValue(1, 0, 0);
         try {
-            DataUtilities.calculateRowTotal(data, -1);
-            fail("Exception InvalidParameterException expected");
+            double total = DataUtilities.calculateRowTotal(data, -1);
+
+            fail("Exception NullPointerException expected");
         } catch(Exception e) {
-            assertEquals(InvalidParameterException.class, e.getClass());
+            assertEquals(NullPointerException.class, e.getClass());
         }
     }
 
     // TC 15
     @Test
-    public void testCalculateRowTotalThrowsInvalidParameterExceptionWhenRowIndexIsTooLarge() {
+    public void testCalculateRowTotalThrowsInvalidParameterDataIsNull() {
         try {
             DataUtilities.calculateRowTotal(null, 0);
             fail("Exception InvalidParameterException expected");
