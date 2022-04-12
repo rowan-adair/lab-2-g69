@@ -327,4 +327,5 @@ public class RangeTests extends TestCase {
         Range r3 = Range.combine(null, null);
         assertNull(r3);
     }
+
 }
